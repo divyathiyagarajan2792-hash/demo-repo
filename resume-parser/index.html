@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>0 → Shipped Resume Parser</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <p class="badge">0 → Shipped</p>
+      <h1>Resume Parser</h1>
+      <p class="sub">
+        Upload a PDF resume. Get a score, the skills it shows, and the skills
+        it's missing — parsed entirely in your browser.
+      </p>
+    </header>
+
+    <main>
+      <!-- Upload -->
+      <section class="card drop-card">
+        <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Upload a PDF resume">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 16V4m0 0l-4 4m4-4l4 4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke-linecap="round"/>
+          </svg>
+          <p><strong>Drop your PDF here</strong> or click to browse</p>
+          <p class="hint">Nothing leaves your device — parsing happens locally.</p>
+        </div>
+        <input type="file" id="file-input" accept="application/pdf" hidden />
+        <p id="file-name" class="file-name" hidden></p>
+        <p id="status" class="status" hidden></p>
+      </section>
+
+      <!-- Results -->
+      <section id="results" class="results" hidden>
+        <div class="card score-card">
+          <h2>Score</h2>
+          <div class="ring-wrap">
+            <svg class="ring" viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="ring-track" cx="60" cy="60" r="52" />
+              <circle class="ring-fill" id="ring-fill" cx="60" cy="60" r="52" />
+            </svg>
+            <div class="ring-label">
+              <span id="score-num">0</span><small>%</small>
+            </div>
+          </div>
+          <p id="score-note" class="score-note"></p>
+        </div>
+
+        <div class="card skills-card">
+          <h2>Skills found <span id="present-count" class="count"></span></h2>
+          <ul id="present-skills" class="chips present"></ul>
+          <p id="present-empty" class="empty" hidden>No known skills detected in the text.</p>
+        </div>
+
+        <div class="card skills-card">
+          <h2>Skills missing <span id="missing-count" class="count"></span></h2>
+          <ul id="missing-skills" class="chips missing"></ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Mock build — resume-parser demo for <em>0 → Shipped</em>.</p>
+    </footer>
+
+    <!-- pdf.js: reads the PDF text client-side; no server involved -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
